@@ -1,0 +1,17 @@
+﻿<Page
+    x:Class="RichEditBoxWithImage.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RichEditBoxWithImage"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Button Content="insert image" Click="InsertImage" Name="insertButton" Margin="0,0,10,0"/>
+        <Button Content="save" Name="openFileButton" Click="save" RelativePanel.RightOf="insertButton"/>
+        <RichEditBox x:Name="editor" Height="200" RelativePanel.Below="openFileButton" 
+                  RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" KeyDown="editor_KeyDown"/>
+        <Image Width="100" Height="100" Name="image"/>
+    </StackPanel>
+</Page>
