@@ -10,6 +10,7 @@
     <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Button Content="insert image" Click="InsertImage" Name="insertButton" Margin="0,0,10,0"/>
         <Button Content="save" Name="openFileButton" Click="save" RelativePanel.RightOf="insertButton"/>
+        <Button Content="open" Click="OpenButton_Click" Name="open" Margin="0,0,10,0"/>
         <RichEditBox x:Name="editor" Height="200" RelativePanel.Below="openFileButton" 
                   RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" KeyDown="editor_KeyDown"/>
         <Image Width="100" Height="100" Name="image"/>

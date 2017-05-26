@@ -89,6 +89,41 @@ namespace RichEditBoxWithImage
             }
         }
 
+
+        private async void OpenButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Open a text file.
+            Windows.Storage.Pickers.FileOpenPicker open =
+                new Windows.Storage.Pickers.FileOpenPicker();
+            open.SuggestedStartLocation =
+                Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary;
+            open.FileTypeFilter.Add(".rtf");
+
+            Windows.Storage.StorageFile file = await open.PickSingleFileAsync();
+
+            if (file != null)
+            {
+                try
+                {
+                    Windows.Storage.Streams.IRandomAccessStream randAccStream =
+                await file.OpenAsync(Windows.Storage.FileAccessMode.Read);
+
+                    // Load the file into the Document property of the RichEditBox.
+                    editor.Document.LoadFromStream(Windows.UI.Text.TextSetOptions.FormatRtf, randAccStream);
+                }
+                catch (Exception)
+                {
+                    ContentDialog errorDialog = new ContentDialog()
+                    {
+                        Title = "File open error",
+                        Content = "Sorry, I couldn't open the file.",
+                        PrimaryButtonText = "Ok"
+                    };
+
+                    await errorDialog.ShowAsync();
+                }
+            }
+        }
         private async void editor_KeyDown(object sender, KeyRoutedEventArgs e)
         {
             //if (e.Key == Windows.System.VirtualKey.V && e.Key == Windows.System.VirtualKey.Control)
